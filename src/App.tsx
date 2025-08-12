@@ -1,16 +1,25 @@
 import { useWallet } from "@solana/wallet-adapter-react";
+import sha256 from "crypto-js/sha256";
 import "./App.css";
 import { SolanaConnect } from "./SolanaConnect";
+const partner = "huma";
+const partnerCode = "a50f6b";
 
 function App() {
   const { publicKey } = useWallet();
+
+  const hash = sha256(`${partnerCode}:${publicKey?.toBase58()}`);
+
   const handleNavigateBasic = () => {
-    window.open("https://app.huma.finance?partner=huma&code=123456", "_blank");
+    window.open(
+      `https://pr-702.d8xz2ktp6ypg3.amplifyapp.com?partner=${partner}&code=${partnerCode}`,
+      "_blank"
+    );
   };
 
   const handleNavigateWithHash = () => {
     window.open(
-      "https://app.huma.finance?partner=huma&code=123456&hash=hashExample",
+      `https://pr-702.d8xz2ktp6ypg3.amplifyapp.com?partner=${partner}&code=${partnerCode}&hash=${hash}`,
       "_blank"
     );
   };
