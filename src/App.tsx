@@ -2,24 +2,26 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import sha256 from "crypto-js/sha256";
 import "./App.css";
 import { SolanaConnect } from "./SolanaConnect";
-const partner = "huma";
-const partnerCode = "a50f6b";
+const partner1 = "huma1";
+const partnerCode1 = "a50f6b";
+const partner2 = "huma2";
+const partnerCode2 = "e2f74a";
 
 function App() {
   const { publicKey } = useWallet();
 
-  const hash = sha256(`${partnerCode}:${publicKey?.toBase58()}`);
+  const partner2Hash = sha256(`${partnerCode2}:${publicKey?.toBase58()}`);
 
   const handleNavigateBasic = () => {
     window.open(
-      `https://pr-702.d8xz2ktp6ypg3.amplifyapp.com?partner=${partner}&code=${partnerCode}`,
+      `https://pr-702.d8xz2ktp6ypg3.amplifyapp.com?partner=${partner1}&code=${partnerCode1}`,
       "_blank"
     );
   };
 
   const handleNavigateWithHash = () => {
     window.open(
-      `https://pr-702.d8xz2ktp6ypg3.amplifyapp.com?partner=${partner}&code=${partnerCode}&hash=${hash}`,
+      `https://pr-702.d8xz2ktp6ypg3.amplifyapp.com?partner=${partner2}&code=${partnerCode2}&hash=${partner2Hash}`,
       "_blank"
     );
   };
@@ -80,7 +82,7 @@ function App() {
               minWidth: "200px",
             }}
           >
-            Promo with code
+            Partner 1 with code
           </button>
           <button
             onClick={handleNavigateWithHash}
@@ -95,7 +97,7 @@ function App() {
               minWidth: "200px",
             }}
           >
-            Promo with hash
+            Partner 2 with hash
           </button>
         </div>
       </div>
